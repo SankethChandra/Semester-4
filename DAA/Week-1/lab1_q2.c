@@ -72,6 +72,7 @@ void printAdjList (ADJ_LIST_NODE_p_t *listHeadArr) {
 		printf(" %d ", p->vertex);
 		temp = *(listHeadArr + (++i));
 	}
+	free(temp);
 }
 
 int ** inputAdjMatrix (int v) {
@@ -106,7 +107,7 @@ void printAdjMatrix (int ** mat, int v) {
 	}
 }
 
-int main (int argc, const char * argv []) {
+void main () {
 
 	int v, e;
 	printf("\tEnter number of vertices: ");
@@ -126,5 +127,5 @@ int main (int argc, const char * argv []) {
 
 	printf("\n\n");
 
-	return 0;
+	
 }

@@ -1,11 +1,3 @@
-//
-//  BinarySearchTree.c
-//  Binary search tree - Preorder, inorder, postorder traversal (Recursive).
-//	Insertion and search.
-//
-//  Created by Avikant Saini on 09/08/16.
-//  Copyright © 2016 avikantz. All rights reserved.
-//
 
 #include <stdio.h>
 #include <stdlib.h>
