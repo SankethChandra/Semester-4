@@ -18,10 +18,9 @@ m = strlen(pattern);
 
 for(i = 0 ; i <= n-m ; i++){
 	j = 0;
-	while(j < m && pattern[j] == text[j+i])
+	for(j=0,count++;j < m && pattern[j] == text[j+i]; )
 		{
-		count++;
-		j++;
+			j++;
 		}
 	if(j == m)
 		{
