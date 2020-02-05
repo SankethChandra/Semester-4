@@ -1,0 +1,35 @@
+1. 
+select Bdate,Address from employee where Fname='John' and Minit='B' and Lname='Smith';
+select fname,minit,lname,address from employee e, department1 d where e.dno=d.dnumber and dname='Research';
+2.
+select pnumber,dnum,lname,address,bdate from project , employee , department1  where plocation='Stafford' and dnum=dnumber and mgr_ssn=ssn; 
+3.
+select distinct salary from employee;
+4.
+select e.fname,e.lname,s.fname,s.lname from employee e, employee s where e.super_ssn=s.ssn;
+5.
+select pnumber from project, employee where dnum=dno and lname='Smith';
+select pno from works_on , employee where essn=ssn and lname='Smith'
+union 
+select pnumber from project,department1, employee where dnumber=dno and mgr_ssn=ssn and lname='Smith'; 
+6.
+select * from employee where address like'%Houston,TX%';
+7.
+select ssn,salary*1.1 from employee,works_on,project where ssn=essn and pno=pnumber and pname='ProductX';
+8.
+select ssn,salary from employee where dno=5 and salary  between 30000 and 40000;
+9.
+select dno,lname from works_on, employee where ssn=essn order by dno,lname,fname;
+10.
+select fname,minit,lname from employee where super_ssn is null;
+11.
+select a.fname,b.dependent_name from employee a,dependent b where a.fname=b.dependent_name and b.essn=a.ssn and a.sex=b.sex; 
+12.
+ select fname,lname from employee where ssn not in (select essn from dependent);
+13.
+select distinct fname from employee,department1,dependent where mgr_ssn=ssn and ssn in (select essn from dependent);
+14.
+ select essn from works_on where pno in (1,2,3);
+15.
+select sum(salary),max(salary),min(salary),avg(salary) from employee,department1 where dname='Research' and dno=dnumber;
+16.
