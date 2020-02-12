@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.SampleController">
+   <right>
+      <Button fx:id="id_1" mnemonicParsing="false" onAction="#Name_1" text="First Button for day" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <TextField BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

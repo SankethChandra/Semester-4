@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="university.LoginController">
+   <children>
+      <Button fx:id="instructor_id" layoutX="79.0" layoutY="127.0" mnemonicParsing="false" onAction="#instructor_method" text="Instructor" />
+      <Button fx:id="dept_id" layoutX="193.0" layoutY="127.0" mnemonicParsing="false" onAction="#dept_method" text="Department" />
+      <Button fx:id="exit_id" layoutX="305.0" layoutY="127.0" mnemonicParsing="false" onAction="#exit_method" text="Exit" />
+   </children>
+</AnchorPane>

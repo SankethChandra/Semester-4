@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="university.Login1Controller">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="124.0" layoutY="67.0" text="Department Name" />
+            <Label layoutX="124.0" layoutY="100.0" text="Building" />
+            <Label layoutX="124.0" layoutY="139.0" text="Budget" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txt1" layoutX="249.0" layoutY="63.0" />
+      <TextField fx:id="txt2" layoutX="249.0" layoutY="100.0" />
+      <TextField fx:id="txt3" layoutX="249.0" layoutY="139.0" />
+      <Button fx:id="insert_id" layoutX="87.0" layoutY="228.0" mnemonicParsing="false" onAction="#insertRecord" text="Insert" />
+      <Button fx:id="delete_id" layoutX="223.0" layoutY="228.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete" />
+      <Button fx:id="update_id" layoutX="359.0" layoutY="228.0" mnemonicParsing="false" onAction="#UpdateRecord" text="Update" />
+      <Button fx:id="clear_id" layoutX="466.0" layoutY="228.0" mnemonicParsing="false" onAction="#clearText" text="Clear" />
+   </children>
+</AnchorPane>
