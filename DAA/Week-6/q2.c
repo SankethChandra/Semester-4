@@ -1,34 +1,23 @@
+//with count done.
 #include <stdio.h>
 #include <stdlib.h>
-struct Node
+#include "freefunc.h"
+int count;
+int getNum(nodeptr t)
 {
-int data;
-struct Node* left;
-struct Node* right;
-};
-typedef struct Node Node;
-Node* getNode(int data)
-{
-Node* t = (Node*)malloc(sizeof(Node));
-t->data = data;
-t->left = t->right = NULL;
-return t;
-}
-int getNum(Node* t)
-{
+	count++;
 if(t == NULL)
     return 0;
 else
-    return 1 + getNum(t->left) + getNum(t->right);
+    return 1 + getNum(t->lchild) + getNum(t->rchild);
 }
 void main()
 {
-Node* root = getNode(5);
-root->right = getNode(10);
-root->left = getNode(3);
-root->right->left = getNode(7);
-root->right->right = getNode(12);
-root->left->right = getNode(4);
-root->left->left = getNode(2);
-printf("The Number of Nodes of the Binary Tree is : %d\n", getNum(root));
+	int data;
+printf("Enter data for root of binary tree\n");
+scanf("%d",&data);
+nodeptr root=createbt(data);
+count=0;
+printf("The Number of Nodes of the Binary Tree is : %d\n ", getNum(root));
+printf("count is %d\n",count );
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+int count=0;
 void Merge(int arr[], int l, int m, int r)
 {
     int n1 = m - l + 1;
@@ -46,7 +47,8 @@ void Merge(int arr[], int l, int m, int r)
     }
 }
 void MSort(int arr[], int l, int r)
-{
+{   
+    count ++;
     if (l < r)
     {
         int m = l + (r - l) / 2;
