@@ -1,0 +1,282 @@
+sample exe1: declare
+  		 message varchar(20):='Hello, World!';
+   	begin
+    		dbms_output.put_line(message);
+  	end;
+  	/
+exercise
+table used::
+ create table studenttable(
+    rollno number(2),
+    gpa numeric(2,1),
+    primary key(rollno)
+    );
+plsql queries 
+1.
+declare 
+	roll number(2);
+	cgpa studenttable.gpa%type;
+begin
+	roll := &rolln;
+	select gpa into cgpa from studenttable where rollno=roll;
+	dbms_output.put_line('Roll no :' || roll);
+	dbms_output.put_line('Gpa :' || cgpa);
+end;
+/
+
+2.
+declare 
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+begin
+	roll:=&x;
+
+	select gpa into cgpa from studenttable where rollno=roll;
+	IF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+end;
+/
+
+3.
+declare
+
+doi date := '18-JUN-2015';
+
+dor date := '30-JUN-2015';
+
+latedays int;
+
+fine float;
+
+erro varchar (20) := 'the fine is rs ';
+
+nd varchar (50) := 'number of late days is ';
+
+begin
+
+latedays := dor - doi;
+
+if latedays <= 5 then
+
+fine := 0.50;
+
+elsif latedays <=10 then
+
+fine := 1.00;
+
+elsif latedays <=30 then
+
+fine := 5.00;
+
+else
+
+fine := 10.00;
+
+end if;
+
+dbms_output.put_line(nd || latedays);
+
+dbms_output.put_line(erro || fine);
+
+end;
+
+/
+
+4.
+declare 
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+begin
+	roll:=1;
+	LOOP
+	select gpa into cgpa from studenttable where rollno=roll;
+	--dbms_output.put_line(cgpa);
+	IF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+	roll:=roll+1;
+	IF roll=6 then EXIT;
+	end if;
+	end LOOP;
+end;
+/
+
+5.
+declare 
+	out_range Exception;
+	error1 varchar(30):='Out of range';
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+begin
+
+	roll:=1;
+	LOOP
+	select gpa into cgpa from studenttable where rollno=roll;
+	--dbms_output.put_line(cgpa);
+	if (cgpa> 10 or cgpa<0) raise out_range; 
+	IF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+	update studenttable set gradeA=grade where rollno=roll;
+	roll:=roll+1;
+	IF roll=6 then EXIT;
+	end if;
+	end LOOP;
+end;
+/
+6.
+declare
+	cgpa studenttable.gpa%Type;
+	maxa studenttable.gpa%Type;
+	rolln studenttable.rollno%Type;
+begin
+	maxa:=0;
+	rolln:=1;
+	loop
+	select gpa into cgpa from studenttable where rollno=rolln;
+	rolln:=rolln+1;
+	IF (maxa < cgpa) then maxa:=cgpa;
+	end if ;
+	IF rolln=6 then EXIT;
+	end if;
+	
+	end loop;
+
+dbms_output.put_line('Max gpa '||maxa);
+select rollno into rolln from studenttable where gpa=maxa; 
+dbms_output.put_line('roll '||rolln);
+
+end; 
+/
+
+7.
+declare 
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+begin
+	roll:=1;
+	<<LOOP>>
+	select gpa into cgpa from studenttable where rollno=roll;
+	--dbms_output.put_line(cgpa);
+	IF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+	roll:=roll+1;
+	IF roll!=6 then GOTO loop;
+	end if;
+	
+end;
+/
+8.
+declare 
+exception_1 Exception;
+exception_2 Exception;
+error1 varchar(40):='Multiple instructors ';
+error2 varchar(40):='No instructor with given name';
+count1 number(3);
+iname instructor.name%Type;
+id1 instructor.id%Type;
+dept instructor.dept_name%type;
+sal instructor.salary%type;
+begin
+	iname:='&n';
+	select count(*) into count1 from instructor where name=iname;
+	if( count1>1) then raise exception_1;
+	elsif(count1=0) then raise exception_2; 
+	else 
+	select id into id1 from instructor where name=iname;	
+	select salary into sal from instructor where name=iname;	
+	select dept_name into dept from instructor where name=iname;	
+	dbms_output.put_line('Details');
+	dbms_output.put_line('name: ' || iname || ' id: ' || id1||' dept_name: '||dept||' salary: '||sal); 	
+	end if;
+EXCEPTION
+	when exception_1 then
+	dbms_output.put_line(error1);
+	when exception_2 then
+	dbms_output.put_line(error2);
+	when others then
+	dbms_output.put_line('error');
+end;
+/
+9.
+
+declare 
+	out_range Exception;
+	error1 varchar(30):='Out of range';
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+begin
+
+	roll:=1;
+	LOOP
+	
+	select gpa into cgpa from studenttable where rollno=roll;
+	--dbms_output.put_line(cgpa);
+	cgpa:=-1;
+	if (cgpa> 10 ) then raise out_range; 
+	ELSIF( cgpa<0) then raise out_range;
+	ELSIF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+	update studenttable set gradeA=grade where rollno=roll;
+	roll:=roll+1;
+	IF roll=6 then EXIT;
+	end if;
+	end LOOP;
+	EXCEPTION
+	when out_range then dbms_output.put_line(error1);
+
+end;
+/
