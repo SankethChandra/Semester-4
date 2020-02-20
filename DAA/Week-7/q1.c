@@ -12,10 +12,16 @@ void findBalanceFactor(nodeptr root)
 void main()
 {
 	int x;
-	printf("Enter root\n");
+	nodeptr root=NULL;
+
+	printf("Enter element for BST\n");
 	scanf("%d",&x);
-	nodeptr root=createbt(x);
+	while(x!=-1)
+	{
+		root=createbst(root,x);
+		printf("Enter element for BST\n");
+		scanf("%d",&x);
+	}	
 	findBalanceFactor(root);
 	preorderPrintBF(root);//BF=balance factor
-	return;
 }

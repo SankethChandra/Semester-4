@@ -57,3 +57,15 @@ void preorderPrintBF(nodeptr root)
         preorderPrintBF(root->rchild);
     }
 }
+nodeptr createbst(nodeptr node, int data) 
+{ 
+    if (!node)   return(createnode(data)); 
+  
+    if (data < node->data) 
+        node->lchild  = createbst(node->lchild, data); 
+    else if (data > node->data) 
+        node->rchild = createbst(node->rchild, data); 
+    else return node; 
+   
+    
+    }
