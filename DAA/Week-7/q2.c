@@ -56,8 +56,6 @@ nodeptr insert(nodeptr node, int data)
         return node; 
   
    	findBalanceFactor(node);
-  
-    
     // Left Left Case 
     if (node->bf > 1 && data < node->lchild->data) 
         return rightRotate(node); 
