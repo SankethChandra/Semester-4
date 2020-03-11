@@ -1,0 +1,110 @@
+1.
+
+create table salary_raise (
+instructor_id varchar(5),
+ raise_date date,
+ raise_amt number(8,2));
+
+declare
+	temp instructor%ROWTYPE;
+	dname instructor.dept_name%type;
+	cursor q1 is select * from instructor where dept_name=dname;
+	raiset number(8,2);
+begin
+	dbms_output.put_line('Enter department name');
+	dname:='&name';
+	open q1;
+	loop
+		fetch q1 into temp;
+		exit when q1%notfound;
+		update instructor
+		set salary = salary + (salary * 0.05)
+		where dept_name =dname;		
+		raiset := temp.salary * 0.05;		
+		insert into salary_raise values(temp.id, (select sysdate from dual), raiset);
+	end loop;
+	close q1;
+end;
+/
+
+2.
+declare
+	cursor q2 is select * from student order by tot_cred;
+	v_row student%rowtype;
+begin
+	open q2;
+	loop 
+		fetch q2 into v_row;
+		dbms_output.put_line(v_row.name||'   '||v_row.ID||'   '||v_row.tot_cred);
+		exit when q2%rowcount > 9;
+	end loop;
+	close q2;	
+
+end;
+/
+3.--not done yet
+declare
+cursor q3 is select * from course natural join section natural join takes;
+begin
+for a in q3
+loop
+
+exit when q3%notfound;
+end loop;
+end;
+/
+
+
+4.
+declare 
+cursor q4 is select * from student natural join takes where course_id='CS-101';
+begin
+for a in q4
+loop
+if a.tot_cred < 50 then
+delete from takes where id=a.id;
+end if;
+exit when q4%notfound;
+end loop;
+end;
+/
+
+5.
+previous lab pl sql block
+declare 
+	grade varchar(2);
+	roll studenttable.rollno%Type;
+	cgpa studenttable.gpa%Type;
+cursor 
+begin
+	roll:=1;
+	LOOP
+	select gpa into cgpa from studenttable where rollno=roll;
+	--dbms_output.put_line(cgpa);
+	IF (cgpa >=9 and cgpa<=10) then grade:='A+';
+	ELSIF (cgpa<9 and cgpa>=8) then grade:='A'; 
+	ELSIF (cgpa<8 and cgpa>=7) then grade:='B';
+	ELSIF (cgpa<7 and cgpa>=6) then 
+		grade:='C';
+	ELSIF (cgpa<6 and cgpa>=5) then 
+		grade:='D'; 
+	ELSIF (cgpa<5 and cgpa>=4) then 
+		grade:='E';
+	ELSE grade:='F';   
+end if;
+	dbms_output.put_line('Grade is ' || grade);
+	roll:=roll+1;
+	IF roll=6 then EXIT;
+	end if;
+	end LOOP;
+end;
+
+ 
+
+
+
+
+
+
+
+
